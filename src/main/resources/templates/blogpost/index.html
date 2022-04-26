@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<!-- lets us name the xml name space-->
+	<head>
+		<title>Blog Site</title>
+		<th:block th:replace="/fragments/head"/>
+
+	</head>
+	
+	<body>
+		<div th:replace="/fragments/navbar::navbarX"> <!-- location/file::th:fragment name -->
+		</div>
+		<div class="container">
+			<h1>Welcome to our Blog Post site!</h1>
+			<h3>Check out our blogs</h3>
+			<div class="row">
+				<!--  here we want to display a list of all our blog posts 
+				  Our blog posts are stored in a th: variable called "posts".
+				   
+				We'll create a div that represents how we're going to display
+					each blog post, and we're going to use th:each to repeat
+					that div over and over (ad nauseam), almost like an 
+					enhanced For loop -->
+				<div th:each="blog:${posts}">
+					<div class = "col-md-6">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<p th:text="${blog.title}"/>
+							</div>
+							<div class="panel-body">
+								<p th:text="${blog.author}"/>
+								<p th:text="${blog.blogEntry}"/>
+							</div>
+							<div class = "panel-footer">
+								<a th:href="@{/blogposts/{id}(id=${blog.id})}">
+									<button class = "btn btn-light">Edit Post</button>
+								</a>
+								<!-- link to show -->
+								<a th:href="@{/blogposts/delete/{id}(id=${blog.id})}">
+									<button class = "btn btn-danger" type="submit">Delete Post</button>
+								</a>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+		<th:block th:replace="/fragments/endbody"/> <!-- div would also work, but th:block is clearly a tag -->
+	</body>
+</html>

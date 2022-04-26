@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Blog Submission</title>
+		<th:block th:replace="/fragments/head"/>
+
+		
+	</head>
+	
+	<body>
+		<div th:replace="/fragments/navbar::navbarX"> <!-- location/file::th:fragment name -->
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<h1 th:text="${blogPost.title}"></h1>
+						</div>
+						<div class="panel-body">
+							<strong><p th:text="${blogPost.author}"/></strong>
+							<p th:text="${blogPost.blogEntry}"/>
+						</div>
+						<div class="panel-footer">
+								<a th:href="@{/}">
+									<button class="btn btn-success"> Back To Home Page</button></a>
+								<!-- <a th:href="@{/blogposts/delete/{id}(id=${blog.id})}">
+									<button class="btn btn-danger">Delete Post </button></a>
+								<a th:href="@{/blogposts/new}"> -->
+									<button class="btn btn-primary">Submit a new blog post</button></a>
+								
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<th:block th:replace="/fragments/endbody"/> <!-- div would also work, but th:block is clearly a tag -->
+
+	</body>
+</html>
